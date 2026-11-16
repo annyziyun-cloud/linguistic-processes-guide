@@ -27,17 +27,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const feedbackTitle = document.getElementById('feedback-title');
     const feedbackDesc = document.getElementById('feedback-desc');
 
-    let hasAnswered = false;
+    let hasAnsweredDecoder = false;
 
     if (decoderOptions.length > 0) {
         decoderOptions.forEach(option => {
             option.addEventListener('click', () => {
-                if (hasAnswered) return; // Lock after first selection
-                hasAnswered = true;
+                if (hasAnsweredDecoder) return;
+                hasAnsweredDecoder = true;
 
                 const isCorrect = option.getAttribute('data-correct') === 'true';
 
-                // Style options
                 decoderOptions.forEach(opt => {
                     opt.classList.add('opacity-60', 'pointer-events-none');
                     if (opt.getAttribute('data-correct') === 'true') {
@@ -46,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                // Populate feedback
                 if (isCorrect) {
                     feedbackBadge.textContent = "Achievement Unlocked";
                     feedbackBadge.className = "px-3 py-1 rounded text-xs font-serif uppercase tracking-wider font-semibold bg-morandi-700 text-white";
@@ -59,12 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     feedbackDesc.textContent = "Not quite! Relying on literal translation fails because contemporary slang relies on rapid metaphor and subcultural shifts (The correct choice was B).";
                 }
 
-                // Reveal feedback card
                 if (decoderFeedback) {
                     decoderFeedback.classList.remove('hidden');
                 }
 
-                // Unlock Next Button
                 if (btnNext1) {
                     btnNext1.disabled = false;
                     btnNext1.classList.remove('bg-morandi-300', 'cursor-not-allowed');
@@ -75,10 +71,85 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
+    // Module 02: Linguistic Case Studies Logic
+    // ==========================================
+    // 1. Matching Drill Verification
+    const btnCheckMatch = document.getElementById('btn-check-match');
+    const matchSelects = document.querySelectorAll('.match-select');
+    const matchFeedback = document.getElementById('match-feedback');
+
+    if (btnCheckMatch) {
+        btnCheckMatch.addEventListener('click', () => {
+            let allCorrect = true;
+            // Correct mapping: 1->B, 2->A, 3->C
+            const correctAnswers = { "1": "B", "2": "A", "3": "C" };
+
+            matchSelects.forEach(select => {
+                const target = select.getAttribute('data-target');
+                if (select.value !== correctAnswers[target]) {
+                    allCorrect = false;
+                }
+            });
+
+            if (allCorrect) {
+                matchFeedback.textContent = "✨ Excellent! All semantic drifts correctly matched.";
+                matchFeedback.className = "text-xs font-serif italic text-morandi-700 font-semibold";
+            } else {
+                matchFeedback.textContent = "⚠️ Some matches are inaccurate. Review etymological shifts above.";
+                matchFeedback.className = "text-xs font-serif italic text-amber-700";
+            }
+        });
+    }
+
+    // 2. Mastery Quiz Evaluation & Page 3 Unlock
+    const btnSubmitQuiz = document.getElementById('btn-submit-quiz');
+    const quizItems = document.querySelectorAll('.quiz-item');
+
+    if (btnSubmitQuiz) {
+        btnSubmitQuiz.addEventListener('click', () => {
+            let answeredAll = true;
+            let score = 0;
+
+            quizItems.forEach(item => {
+                const qNum = item.getAttribute('data-question');
+                const correctAnswer = item.getAttribute('data-answer');
+                const selected = item.querySelector(`input[name="q${qNum}"]:checked`);
+                const feedbackEl = item.querySelector('.quiz-feedback');
+
+                if (!selected) {
+                    answeredAll = false;
+                } else {
+                    feedbackEl.classList.remove('hidden');
+                    if (selected.value === correctAnswer) {
+                        score++;
+                        feedbackEl.textContent = "✓ Correct. Your diagnostic analysis is accurate.";
+                        feedbackEl.className = "quiz-feedback text-xs italic mt-2 p-3 rounded bg-morandi-50 text-morandi-900 border border-morandi-300";
+                    } else {
+                        feedbackEl.textContent = "✗ Incorrect. Review the core linguistic mechanism for this case.";
+                        feedbackEl.className = "quiz-feedback text-xs italic mt-2 p-3 rounded bg-amber-50 text-amber-900 border border-amber-200";
+                    }
+                }
+            });
+
+            if (!answeredAll) {
+                alert("Please complete all quiz questions before submitting.");
+                return;
+            }
+
+            // If quiz is completed, unlock Page 3 button
+            if (btnNext2) {
+                btnNext2.disabled = false;
+                btnNext2.classList.remove('bg-morandi-300', 'cursor-not-allowed');
+                btnNext2.classList.add('bg-morandi-700', 'hover:bg-morandi-900');
+                alert(`Quiz Submitted! You scored ${score} / 3. Proceed to Module 03 is now unlocked.`);
+            }
+        });
+    }
+
+    // ==========================================
     // Page Navigation Controller
     // ==========================================
     function navigateToPage(targetPage) {
-        // Hide all pages
         for (let i = 1; i <= totalPages; i++) {
             const page = document.getElementById(`page-${i}`);
             if (page) {
@@ -86,24 +157,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Show target page
         const targetElement = document.getElementById(`page-${targetPage}`);
         if (targetElement) {
             targetElement.classList.remove('hidden');
             currentPage = targetPage;
         }
 
-        // Update Header Step Indicator
         const romanNumerals = ['I', 'II', 'III', 'IV'];
         if (stepIndicator) {
             stepIndicator.textContent = `Phase ${romanNumerals[currentPage - 1]} of IV`;
         }
 
-        // Scroll to top smoothly
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Event Listeners for Next Buttons
     if (btnNext1) {
         btnNext1.addEventListener('click', () => navigateToPage(2));
     }
@@ -114,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btnNext3.addEventListener('click', () => navigateToPage(4));
     }
 
-    // Event Listeners for Previous Buttons
     prevButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             if (currentPage > 1) {
@@ -123,5 +189,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    console.log("Lavend/r Academic Framework initialized successfully.");
+    console.log("Lavend/r Academic Framework initialized successfully with Quiz & Match logic.");
 });
