@@ -11,9 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // DOM Elements
     const stepIndicator = document.getElementById('step-indicator');
-    const annotationTriggers = document.querySelectorAll('.annotation-trigger');
-    const annotationBox = document.getElementById('annotation-box');
-    const annotationText = document.getElementById('annotation-text');
 
     // Navigation Buttons
     const btnNext1 = document.getElementById('btn-next-1');
@@ -21,20 +18,65 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnNext3 = document.getElementById('btn-next-3');
     const prevButtons = document.querySelectorAll('.btn-prev');
 
-    // 1. Module 1: Annotation Trigger Logic
-    annotationTriggers.forEach(trigger => {
-        trigger.addEventListener('click', () => {
-            const note = trigger.getAttribute('data-note');
-            annotationText.textContent = note;
-            annotationBox.classList.remove('hidden');
-            
-            // Subtle highlight effect on active trigger
-            annotationTriggers.forEach(t => t.classList.remove('text-morandi-500'));
-            trigger.classList.add('text-morandi-500');
-        });
-    });
+    // ==========================================
+    // Module 01: Gen Z Slang Decoder Logic
+    // ==========================================
+    const decoderOptions = document.querySelectorAll('.decoder-option');
+    const decoderFeedback = document.getElementById('decoder-feedback');
+    const feedbackBadge = document.getElementById('feedback-badge');
+    const feedbackTitle = document.getElementById('feedback-title');
+    const feedbackDesc = document.getElementById('feedback-desc');
 
-    // 2. Page Navigation Controller
+    let hasAnswered = false;
+
+    if (decoderOptions.length > 0) {
+        decoderOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                if (hasAnswered) return; // Lock after first selection
+                hasAnswered = true;
+
+                const isCorrect = option.getAttribute('data-correct') === 'true';
+
+                // Style options
+                decoderOptions.forEach(opt => {
+                    opt.classList.add('opacity-60', 'pointer-events-none');
+                    if (opt.getAttribute('data-correct') === 'true') {
+                        opt.classList.remove('opacity-60');
+                        opt.classList.add('border-morandi-500', 'bg-morandi-50');
+                    }
+                });
+
+                // Populate feedback
+                if (isCorrect) {
+                    feedbackBadge.textContent = "Achievement Unlocked";
+                    feedbackBadge.className = "px-3 py-1 rounded text-xs font-serif uppercase tracking-wider font-semibold bg-morandi-700 text-white";
+                    feedbackTitle.textContent = "Gen Z Lexicon Decoder: Certified";
+                    feedbackDesc.textContent = "Spot on! 'Cooked' (performed exceptionally well) combined with 'rizz' (charisma) creates a brand-new idiomatic layer that literal dictionaries cannot capture.";
+                } else {
+                    feedbackBadge.textContent = "Diagnostic Alert";
+                    feedbackBadge.className = "px-3 py-1 rounded text-xs font-serif uppercase tracking-wider font-semibold bg-morandi-300 text-morandi-900";
+                    feedbackTitle.textContent = "Severe Generational Translation Error Detected";
+                    feedbackDesc.textContent = "Not quite! Relying on literal translation fails because contemporary slang relies on rapid metaphor and subcultural shifts (The correct choice was B).";
+                }
+
+                // Reveal feedback card
+                if (decoderFeedback) {
+                    decoderFeedback.classList.remove('hidden');
+                }
+
+                // Unlock Next Button
+                if (btnNext1) {
+                    btnNext1.disabled = false;
+                    btnNext1.classList.remove('bg-morandi-300', 'cursor-not-allowed');
+                    btnNext1.classList.add('bg-morandi-700', 'hover:bg-morandi-900');
+                }
+            });
+        });
+    }
+
+    // ==========================================
+    // Page Navigation Controller
+    // ==========================================
     function navigateToPage(targetPage) {
         // Hide all pages
         for (let i = 1; i <= totalPages; i++) {
@@ -53,13 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update Header Step Indicator
         const romanNumerals = ['I', 'II', 'III', 'IV'];
-        stepIndicator.textContent = `Phase ${romanNumerals[currentPage - 1]} of IV`;
+        if (stepIndicator) {
+            stepIndicator.textContent = `Phase ${romanNumerals[currentPage - 1]} of IV`;
+        }
 
         // Scroll to top smoothly
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 3. Event Listeners for Next Buttons
+    // Event Listeners for Next Buttons
     if (btnNext1) {
         btnNext1.addEventListener('click', () => navigateToPage(2));
     }
