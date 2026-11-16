@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const aiStatus = document.getElementById('ai-status');
 
     // ⚠️ [重要] 請將下方字串替換為你在 Google Apps Script 部署後的 Web App URL
-    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/你的部署網址/exec";
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw_goKDN46kgTrbabT_lGWrBSA6BJ2_GcGFxv_g1rDTCHm4qUGNXxmtrJhkqw_dZSo/exec";
 
     if (btnGenerateAI) {
         btnGenerateAI.addEventListener('click', async () => {
