@@ -200,21 +200,21 @@ document.addEventListener('DOMContentLoaded', () => {
             aiOutputArea.innerHTML = ""; // Clear previous content
 
             // 3. Simulate AI API Call (Network Delay)
-            /* 
-               [Note for Future API Integration]
-               Here you would normally construct a prompt string containing the student's inputs,
-               and send a fetch() request to your LLM endpoint (e.g., Gemini API).
-               For this frontend demo, we simulate a 2.5-second processing delay 
-               and return a highly polished mock response.
-            */
             setTimeout(() => {
-                // Mock Polished Script (Incorporating the concepts of their answers)
+                
+                // 完全替換邏輯：如果有填寫就用學生的，沒填寫才用預設的
+                const finalStep2 = step2 || "Language isn't just a static dictionary printed decades ago; it is a living, breathing system.";
+                const finalStep3 = step3 || "Think of English like a massive open-source software project. We are all developers, constantly patching bugs and releasing new vocabulary updates.";
+                const finalStep4 = step4 || "But have you ever wondered who actually approves these updates? Is it just random chaos?";
+                const finalStep5 = step5 || "Today, we are going to decode the four foundational pillars of word formation. Let's dive in and see how we reinvent English every single day.";
+
+                // Mock Polished Script (Clean Synthesis)
                 const polishedScript = `
                     <p>Imagine this. You show your friend a brand-new, expensive pair of sneakers, and their first reaction is: <em>'Whoa, bro, that’s sick.'</em> Or you’re playing a game, someone is acting weird, and you just say: <em>'You’re acting sus.'</em></p>
-                    <p>If you translate these literally, it makes zero sense. But we all know exactly what they mean. ${step2 ? "As you noted, " + step2 + " In reality, language isn't just a static dictionary printed decades ago; it is a living, breathing system." : "This proves that language isn't just a static dictionary printed decades ago; it is a living, breathing system."}</p>
-                    <p>${step3 ? step3 : "Think of it like an open-source software."} We, the users, are constantly pushing new updates and patching bugs in our daily conversations to make communication faster and more expressive.</p>
-                    <p>${step4 ? step4 : "But have you ever stopped to wonder... who actually governs these unwritten rules?"} Why does a word for 'vomiting' suddenly mean 'awesome'? Is it just random chaos?</p>
-                    <p>The answer is no. ${step5 ? step5 : "There are invisible, highly structured equations behind every new slang term we invent."} Today, we are going to decode the four foundational pillars of word formation: Semantic Shift, Clipping, Derivation, and Compounding. Let's dive in and see how we reinvent English every single day.</p>
+                    <p>If you translate these literally, it makes zero sense. But we all know exactly what they mean. ${finalStep2}</p>
+                    <p>${finalStep3}</p>
+                    <p>${finalStep4}</p>
+                    <p>The truth is, there are invisible, highly structured equations behind every new slang term. ${finalStep5}</p>
                 `;
 
                 // 4. Remove Loading UI & Start Typewriter Effect
