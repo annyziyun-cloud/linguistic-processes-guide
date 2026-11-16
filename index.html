@@ -1,1 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Linguistic Processes | Academic Study Guide</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Tailwind Configuration for Morandi Palette -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        morandi: {
+                            50: '#F7F6F3',  // Digital paper background
+                            100: '#E8E5E1', // Subtle borders
+                            300: '#B0A8A6', // Muted text / inactive steps
+                            500: '#7E868C', // Accent blue-grey
+                            700: '#5C544F', // Main body text
+                            900: '#4A423D'  // Headings
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Merriweather', 'serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="text-morandi-700 font-sans antialiased digital-paper min-h-screen flex flex-col justify-between">
 
+    <!-- Top Navigation / Header -->
+    <header class="w-full max-w-5xl mx-auto px-8 pt-12 pb-6 border-b border-morandi-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+            <span class="text-xs uppercase tracking-widest text-morandi-500 font-semibold">Academic Inquiry</span>
+            <h1 class="text-2xl font-serif text-morandi-900 mt-1">The Linguistic Processes</h1>
+        </div>
+        <!-- Progress Indicator -->
+        <div class="flex items-center gap-3 text-sm font-serif text-morandi-500">
+            <span id="step-indicator" class="tracking-wide">Phase I of IV</span>
+        </div>
+    </header>
+
+    <!-- Main Content Container (Wizard Pages) -->
+    <main class="w-full max-w-4xl mx-auto px-6 py-12 flex-1">
+        
+        <!-- PAGE 1: The Hook Deconstruction -->
+        <section id="page-1" class="page-container space-y-8">
+            <div class="border-l-2 border-morandi-500 pl-6 space-y-2">
+                <span class="text-xs uppercase tracking-wider text-morandi-500 font-semibold">Module 01</span>
+                <h2 class="text-3xl font-serif text-morandi-900">The Hook Deconstruction</h2>
+                <p class="text-morandi-500 text-sm">Examine the opening rhetorical device. Click the underlined terms to reveal analytical insights.</p>
+            </div>
+
+            <div class="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-morandi-100 space-y-6 font-serif leading-relaxed text-lg text-morandi-700">
+                <p>
+                    Imagine this. You just bought a brand-new, super expensive pair of sneakers. You show them to your best friend, and their first reaction is: 
+                    <span class="annotation-trigger text-morandi-900 font-semibold underline decoration-morandi-300 cursor-pointer hover:text-morandi-500 transition" data-note="Semantic Shift: A term denoting pathology is inverted to express high aesthetic approval.">‘Whoa, bro, that’s sick.’</span>
+                </p>
+                <p>
+                    Now, pause for a second. If you translate that literally, your friend just looked at your beautiful new shoes and said they have a disease. That makes zero sense, right? But we all know exactly what they mean: those shoes are incredibly cool.
+                </p>
+                <p>
+                    Or think about this one. You’re playing a game, and someone is hiding in the corner acting weird. You don’t stand up and formally announce, <em>'Excuse me, I believe you are behaving in a highly suspicious manner.'</em> No! Nobody has time for that. You just point and say, 
+                    <span class="annotation-trigger text-morandi-900 font-semibold underline decoration-morandi-300 cursor-pointer hover:text-morandi-500 transition" data-note="Clipping: Morphological truncation dropping syllables for high-speed conversational efficiency.">‘You’re acting sus.’</span>
+                </p>
+                <p class="text-base text-morandi-500 italic pt-4 border-t border-morandi-100">
+                    We use these terms daily. But who governs these unwritten rules? Let's investigate the underlying mechanics.
+                </p>
+            </div>
+
+            <!-- Annotation Pop-up Display Box -->
+            <div id="annotation-box" class="hidden bg-morandi-100 p-4 rounded-lg text-sm font-serif text-morandi-900 border border-morandi-300 transition-all">
+                💡 <span id="annotation-text">Click an underlined term above to view linguistic analysis.</span>
+            </div>
+
+            <!-- Action / Unlock Button -->
+            <div class="flex justify-end pt-6">
+                <button id="btn-next-1" class="bg-morandi-700 text-white font-serif px-8 py-3 rounded-lg text-sm tracking-wide shadow-sm hover:bg-morandi-900 transition flex items-center gap-2">
+                    Proceed to Case Studies &rarr;
+                </button>
+            </div>
+        </section>
+
+        <!-- PAGE 2: Linguistic Case Studies (Placeholder for next step) -->
+        <section id="page-2" class="page-container hidden space-y-8">
+            <div class="border-l-2 border-morandi-500 pl-6 space-y-2">
+                <span class="text-xs uppercase tracking-wider text-morandi-500 font-semibold">Module 02</span>
+                <h2 class="text-3xl font-serif text-morandi-900">Linguistic Case Studies</h2>
+                <p class="text-morandi-500 text-sm">Analyze contemporary lexical evolutions and categorize their underlying processes.</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-morandi-100 text-center py-16">
+                <p class="font-serif text-morandi-500">[ Case Studies Content Loading from data.json... ]</p>
+            </div>
+            <div class="flex justify-between pt-6">
+                <button class="btn-prev text-morandi-500 hover:text-morandi-900 font-serif text-sm">&larr; Back</button>
+                <button id="btn-next-2" class="bg-morandi-700 text-white font-serif px-8 py-3 rounded-lg text-sm tracking-wide shadow-sm hover:bg-morandi-900 transition">Proceed to Pillars &rarr;</button>
+            </div>
+        </section>
+
+        <!-- PAGE 3: The Pillars of Linguistics (Placeholder) -->
+        <section id="page-3" class="page-container hidden space-y-8">
+            <div class="border-l-2 border-morandi-500 pl-6 space-y-2">
+                <span class="text-xs uppercase tracking-wider text-morandi-500 font-semibold">Module 03</span>
+                <h2 class="text-3xl font-serif text-morandi-900">The Pillars of Linguistics</h2>
+                <p class="text-morandi-500 text-sm">Explore formal academic definitions and systemic frameworks.</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-morandi-100 text-center py-16">
+                <p class="font-serif text-morandi-500">[ 4 Pillars Academic Manual Loading... ]</p>
+            </div>
+            <div class="flex justify-between pt-6">
+                <button class="btn-prev text-morandi-500 hover:text-morandi-900 font-serif text-sm">&larr; Back</button>
+                <button id="btn-next-3" class="bg-morandi-700 text-white font-serif px-8 py-3 rounded-lg text-sm tracking-wide shadow-sm hover:bg-morandi-900 transition">Proceed to Speech Drafter &rarr;</button>
+            </div>
+        </section>
+
+        <!-- PAGE 4: The Speech Drafter (Placeholder) -->
+        <section id="page-4" class="page-container hidden space-y-8">
+            <div class="border-l-2 border-morandi-500 pl-6 space-y-2">
+                <span class="text-xs uppercase tracking-wider text-morandi-500 font-semibold">Module 04</span>
+                <h2 class="text-3xl font-serif text-morandi-900">The Speech Drafter</h2>
+                <p class="text-morandi-500 text-sm">Synthesize your insights into a structured oral presentation script.</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-morandi-100 text-center py-16">
+                <p class="font-serif text-morandi-500">[ 5-Step Script Framework & Editorial Review Workspace... ]</p>
+            </div>
+            <div class="flex justify-start pt-6">
+                <button class="btn-prev text-morandi-500 hover:text-morandi-900 font-serif text-sm">&larr; Back</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-5xl mx-auto px-8 py-8 border-t border-morandi-100 text-center text-xs font-serif text-morandi-300">
+        Lavend/r Academic Editions &copy; 2026. Designed for Advanced Linguistic Inquiry.
+    </footer>
+
+    <!-- Main JavaScript Link -->
+    <script src="js/main.js"></script>
+</body>
+</html>
