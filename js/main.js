@@ -146,6 +146,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+   // ==========================================
+    // Module 03: Pillars Manual Acknowledgement Logic
+    // ==========================================
+    const pillarCheckbox = document.getElementById('pillar-acknowledgement');
+    const btnNext3 = document.getElementById('btn-next-3');
+
+    if (pillarCheckbox && btnNext3) {
+        pillarCheckbox.addEventListener('change', () => {
+            if (pillarCheckbox.checked) {
+                btnNext3.disabled = false;
+                btnNext3.classList.remove('bg-morandi-300', 'cursor-not-allowed');
+                btnNext3.classList.add('bg-morandi-700', 'hover:bg-morandi-900');
+            } else {
+                btnNext3.disabled = true;
+                btnNext3.classList.remove('bg-morandi-700', 'hover:bg-morandi-900');
+                btnNext3.classList.add('bg-morandi-300', 'cursor-not-allowed');
+            }
+        });
+    }
+   
     // ==========================================
     // Page Navigation Controller
     // ==========================================
