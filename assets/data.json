@@ -2,36 +2,77 @@
   "caseStudies": [
     {
       "id": 1,
-      "term": "Ghosting",
-      "context": "Abruptly cutting off all communication and disappearing from someone's life without explanation, originally common in digital dating.",
-      "question": "What primary linguistic process is demonstrated when a psychological behavior adopts a spectral metaphor?",
-      "options": [
-        "A) Clipping (Truncating syllable length)",
-        "B) Semantic Shift (Inverting established meanings)",
-        "C) Metaphorical Extension / Semantic Expansion",
-        "D) Borrowing from Classical Sanskrit"
-      ],
-      "answer": 2
+      "term": "Toxic",
+      "subtitle": "從醫學到迷因的極限漂移",
+      "etymology": "源自拉丁語 toxicum（箭毒），最初是非常生硬、嚴格的醫學和化學術語，用來描述物理上的「有毒物質」。",
+      "shift": "從「物質中毒」一路漂移到 2000 年代流行歌裡的「情感傷害」（如 Britney Spears 的歌），再到近代社交媒體與職場文化中全面爆發的「Toxic relationship / Toxic productivity」。",
+      "linguisticInsight": "Metaphorical Extension（隱喻延伸）——展現人類如何把具象的物理威脅，完美借用到抽象的人際心理狀態上。"
     },
     {
       "id": 2,
-      "term": "Rizz",
-      "context": "A colloquial term for romantic charm or the ability to seduce effortlessly, popularized rapidly on social media.",
-      "question": "From which longer morphological root was 'rizz' extracted?",
+      "term": "Sick",
+      "subtitle": "從「生病」到「讚嘆」的極端反轉",
+      "etymology": "古日耳曼語根源，數百年來一直指「身體生病、感到噁心或虛弱」。",
+      "shift": "在街頭文化（Hip-hop / 滑板圈）中發生了完全相反的 Amelioration（詞義褒化）。當有人說 \"That trick was sick!\" 時，意思為「太神了／超帥的」。",
+      "linguisticInsight": "Subcultural Inversion / Amelioration——次文化刻意用負面詞彙表達至高讚譽，藉此建立內團體（In-group）的認同與排他性。"
+    },
+    {
+      "id": 3,
+      "term": "BRB / GOAT",
+      "subtitle": "大腦追求極致效率的產物",
+      "etymology": "網路聊天室與社群媒體時代的產物（Be Right Back / Greatest of All Time）。",
+      "shift": "將一整句話「壓縮」成一個像發音符號一樣的全新實體，成為數位溝通的通用捷徑。",
+      "linguisticInsight": "Blending & Acronymization（混成與首字母縮略）——體現大腦對 Cognitive Efficiency（認知與溝通效率）的追求。"
+    }
+  ],
+  "matchingDrill": [
+    { "id": 1, "term": "Toxic (源自箭毒)", "match": "B", "desc": "職場與人際關係的有毒壓迫" },
+    { "id": 2, "term": "Sick (源自身體生病)", "match": "A", "desc": "街頭俚語中的至高讚譽" },
+    { "id": 3, "term": "BRB / GOAT (字面縮寫)", "match": "C", "desc": "大腦對高速訊息的極致壓縮" }
+  ],
+  "quizQuestions": [
+    {
+      "id": 1,
+      "question": "Regarding the evolution of 'Toxic' from a medical term to interpersonal relationships, which linguistic explanation is most accurate?",
       "options": [
-        "A) Charisma",
-        "B) Romantic",
-        "C) Ridiculous",
-        "D) Resonance"
+        "A) It occurs because medical vocabulary naturally shortens to satisfy the laziness principle.",
+        "B) It is a classic case of Metaphorical Extension, transferring physical venom to abstract psychological harm.",
+        "C) It represents a complete semantic inversion known as Amelioration.",
+        "D) It is a meaningless spelling error generated randomly by internet memes."
       ],
-      "answer": 0
+      "answer": 1,
+      "explanation": "Toxic originally denoted physical poison. Through metaphorical extension, our brains mapped this concept onto toxic workplaces and relationships."
+    },
+    {
+      "id": 2,
+      "question": "In skate culture or hip-hop, saying 'That trick was sick!' exemplifies which linguistic phenomenon?",
+      "options": [
+        "A) Semantic Bleaching: The literal meaning fades completely into a punctuation mark.",
+        "B) Clipping: Truncating a long word down to a single syllable.",
+        "C) Subcultural Inversion / Amelioration: Deliberately repurposing a negative term to express high praise.",
+        "D) Etymological Fallacy: Misunderstanding the original Germanic spelling."
+      ],
+      "answer": 2,
+      "explanation": "Subcultures often invert norms by transforming negative or uncomfortable terms into strong positive praise to establish group identity."
+    },
+    {
+      "id": 3,
+      "question": "Why do digital natives frequently use acronyms like 'GOAT' or 'BRB'?",
+      "options": [
+        "A) Ancient English spelling rules formally mandated sentence abbreviation.",
+        "B) It reflects the pursuit of Cognitive Efficiency, compressing complex structures into high-density symbols.",
+        "C) It is an extreme example of complete semantic death.",
+        "D) It is an official government standard for faster typing speeds."
+      ],
+      "answer": 1,
+      "explanation": "Under the pressure of real-time messaging, cognitive and social collaboration drives abbreviation to create functional language shortcuts."
     }
   ],
   "pillars": [
     {
       "id": "semantic-shift",
       "title": "1. Semantic Shift",
-      "definition": "The evolution of a word's word-meaning over time, where the underlying concept undergoes pejoration, amelioration, or complete inversion.",
+      "definition": "The evolution of a word's meaning over time, where the underlying concept undergoes pejoration, amelioration, or complete inversion.",
       "example": "Sick (Pathology) → Sick (Exceptional approval)"
     },
     {
