@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const aiStatus = document.getElementById('ai-status');
 
     // 綁定你部署的 GAS Web App URL
-    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxyCTuhUMSey3zCieSgsdo8X4CqNYhA-n9M_RZfa5V2hGbM-5IfocNSmvlvZkQFXuk/exec";
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbztuc0sIQUJwqLxi8O-Q9auqf34oGOnrOAe94nz_p7VJhPXGdh8Nf6IG_EoxYwqXqta/exec";
 
     // 避免重複點擊的狀態鎖
     let isGenerating = false;
