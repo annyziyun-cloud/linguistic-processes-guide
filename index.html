@@ -427,21 +427,96 @@
             </div>
         </section>
 
-        <!-- PAGE 4: The Speech Drafter (Placeholder) -->
+        <!-- PAGE 4: The Speech Drafter (AI Editorial Workspace) -->
         <section id="page-4" class="page-container hidden space-y-8">
-            <div class="border-l-2 border-morandi-500 pl-6 space-y-2">
+            <div class="border-l-2 border-morandi-500 pl-6 space-y-2 mb-8">
                 <span class="text-xs uppercase tracking-wider text-morandi-500 font-semibold">Module 04</span>
                 <h2 class="text-3xl font-serif text-morandi-900">The Speech Drafter</h2>
-                <p class="text-morandi-500 text-sm">Synthesize your insights into a structured oral presentation script.</p>
+                <p class="text-morandi-500 text-sm">Synthesize your insights into a structured, TED-style oral presentation script using AI editorial assistance.</p>
             </div>
-            <div class="bg-white p-8 rounded-xl shadow-sm border border-morandi-100 text-center py-16">
-                <p class="font-serif text-morandi-500">[ 5-Step Script Framework & Editorial Review Workspace... ]</p>
+
+            <!-- Two-Column Workspace -->
+            <div class="flex flex-col lg:flex-row gap-8 items-start">
+                
+                <!-- Left Column: The 5-Step Scaffolding Form -->
+                <div class="w-full lg:w-1/2 bg-white p-8 rounded-xl border border-morandi-100 shadow-sm space-y-8 font-serif">
+                    <div class="border-b border-morandi-100 pb-4">
+                        <h3 class="text-lg text-morandi-900">Script Framework</h3>
+                        <p class="text-xs text-morandi-500 italic mt-1">Answer the prompts below. Do not worry about perfect grammar.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Step 1 (Read-only Hook) -->
+                        <div class="opacity-60 pointer-events-none">
+                            <label class="block text-xs font-bold text-morandi-900 uppercase tracking-widest mb-2">Step 1: The Hook (Completed)</label>
+                            <div class="w-full bg-morandi-50 border border-morandi-100 rounded-lg p-4 text-xs text-morandi-700 italic">
+                                "Imagine this. You show your friend new sneakers, and they say: 'Whoa, bro, that’s sick.' Or someone is acting weird in a game, and you say: 'You’re acting sus.' Why do we use these words?"
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2 -->
+                        <div>
+                            <label class="block text-xs font-bold text-morandi-900 uppercase tracking-widest mb-1">Step 2: Introduce the Concept</label>
+                            <p class="text-[11px] text-morandi-500 mb-2">How would you transition from the slang examples to the idea that language is a living, evolving system?</p>
+                            <textarea id="draft-step2" class="w-full bg-white border border-morandi-300 rounded-lg p-3 text-sm text-morandi-700 focus:ring-1 focus:ring-morandi-500 outline-none transition" rows="2" placeholder="e.g., Language isn't just a printed dictionary..."></textarea>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div>
+                            <label class="block text-xs font-bold text-morandi-900 uppercase tracking-widest mb-1">Step 3: Concept & Metaphor</label>
+                            <p class="text-[11px] text-morandi-500 mb-2">What metaphor will you use to explain this? (e.g., Open-source software, Biological evolution)</p>
+                            <textarea id="draft-step3" class="w-full bg-white border border-morandi-300 rounded-lg p-3 text-sm text-morandi-700 focus:ring-1 focus:ring-morandi-500 outline-none transition" rows="2" placeholder="e.g., Think of it like open-source software updates..."></textarea>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div>
+                            <label class="block text-xs font-bold text-morandi-900 uppercase tracking-widest mb-1">Step 4: A Knowledge Gap</label>
+                            <p class="text-[11px] text-morandi-500 mb-2">How will you make the audience realize they don't actually know the invisible rules behind word creation?</p>
+                            <textarea id="draft-step4" class="w-full bg-white border border-morandi-300 rounded-lg p-3 text-sm text-morandi-700 focus:ring-1 focus:ring-morandi-500 outline-none transition" rows="2" placeholder="e.g., But have you ever wondered who makes these invisible rules?"></textarea>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div>
+                            <label class="block text-xs font-bold text-morandi-900 uppercase tracking-widest mb-1">Step 5: Reveal the Big Idea</label>
+                            <p class="text-[11px] text-morandi-500 mb-2">Introduce the 4 Pillars we just learned to conclude your introduction.</p>
+                            <textarea id="draft-step5" class="w-full bg-white border border-morandi-300 rounded-lg p-3 text-sm text-morandi-700 focus:ring-1 focus:ring-morandi-500 outline-none transition" rows="2" placeholder="e.g., Today, we will decode the 4 pillars of word formation..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 border-t border-morandi-100 flex justify-end">
+                        <button id="btn-generate-ai" class="bg-morandi-900 text-white font-serif px-6 py-3 rounded text-xs tracking-widest uppercase hover:bg-morandi-700 transition flex items-center gap-2 shadow-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            AI Editorial Synthesis
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: AI Output Workspace -->
+                <div class="w-full lg:w-1/2 bg-[#FAFAFA] p-8 rounded-xl border border-morandi-100 shadow-inner min-h-[600px] flex flex-col font-serif relative">
+                    <div class="flex items-center justify-between border-b border-morandi-100 pb-4 mb-6">
+                        <h3 class="text-sm font-semibold text-morandi-900 uppercase tracking-widest">Final Script</h3>
+                        <span id="ai-status" class="text-[10px] uppercase tracking-widest text-morandi-300">Awaiting Input...</span>
+                    </div>
+
+                    <!-- AI Output Content Area -->
+                    <div id="ai-output-area" class="flex-1 text-sm text-morandi-700 leading-loose space-y-4">
+                        <p class="text-morandi-300 italic text-center mt-32">Fill in the framework on the left and click "AI Editorial Synthesis" to generate your polished, TED-style presentation script.</p>
+                    </div>
+
+                    <!-- Loading Overlay (Hidden by default) -->
+                    <div id="ai-loading-overlay" class="hidden absolute inset-0 bg-[#FAFAFA]/90 flex flex-col items-center justify-center rounded-xl z-10">
+                        <div class="w-8 h-8 border-2 border-morandi-300 border-t-morandi-900 rounded-full animate-spin mb-4"></div>
+                        <p class="text-xs text-morandi-500 uppercase tracking-widest animate-pulse">Synthesizing & Polishing...</p>
+                    </div>
+                </div>
+
             </div>
+
+            <!-- Navigation Buttons -->
             <div class="flex justify-start pt-6">
-                <button class="btn-prev text-morandi-500 hover:text-morandi-900 font-serif text-sm">&larr; Back</button>
+                <button class="btn-prev text-morandi-500 hover:text-morandi-900 font-serif text-sm">&larr; Back to Pillars Manual</button>
             </div>
         </section>
-
     </main>
 
     <!-- Footer -->
