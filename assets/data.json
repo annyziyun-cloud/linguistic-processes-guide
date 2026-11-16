@@ -1,1 +1,56 @@
-
+{
+  "caseStudies": [
+    {
+      "id": 1,
+      "term": "Ghosting",
+      "context": "Abruptly cutting off all communication and disappearing from someone's life without explanation, originally common in digital dating.",
+      "question": "What primary linguistic process is demonstrated when a psychological behavior adopts a spectral metaphor?",
+      "options": [
+        "A) Clipping (Truncating syllable length)",
+        "B) Semantic Shift (Inverting established meanings)",
+        "C) Metaphorical Extension / Semantic Expansion",
+        "D) Borrowing from Classical Sanskrit"
+      ],
+      "answer": 2
+    },
+    {
+      "id": 2,
+      "term": "Rizz",
+      "context": "A colloquial term for romantic charm or the ability to seduce effortlessly, popularized rapidly on social media.",
+      "question": "From which longer morphological root was 'rizz' extracted?",
+      "options": [
+        "A) Charisma",
+        "B) Romantic",
+        "C) Ridiculous",
+        "D) Resonance"
+      ],
+      "answer": 0
+    }
+  ],
+  "pillars": [
+    {
+      "id": "semantic-shift",
+      "title": "1. Semantic Shift",
+      "definition": "The evolution of a word's word-meaning over time, where the underlying concept undergoes pejoration, amelioration, or complete inversion.",
+      "example": "Sick (Pathology) → Sick (Exceptional approval)"
+    },
+    {
+      "id": "clipping",
+      "title": "2. Clipping",
+      "definition": "The morphological process of shortening a polysyllabic lexeme without altering its core lexical category or semantic intent.",
+      "example": "Suspicious → Sus | Advertisement → Ad"
+    },
+    {
+      "id": "borrowing",
+      "title": "3. Borrowing",
+      "definition": "The adoption of loanwords from external languages or subcultural lexicons into the primary linguistic framework.",
+      "example": "Avatar (Sanskrit origin) → Digital UI identity"
+    },
+    {
+      "id": "blending",
+      "title": "4. Blending",
+      "definition": "The coalescence of two distinct lexemes and their meanings to forge a novel compound concept.",
+      "example": "Hungry + Angry = Hangry"
+    }
+  ]
+}
