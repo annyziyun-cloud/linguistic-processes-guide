@@ -114,22 +114,189 @@
             </div>
         </section>
 
-        <!-- PAGE 2: Linguistic Case Studies (Placeholder for next step) -->
-        <section id="page-2" class="page-container hidden space-y-8">
+        <!-- PAGE 2: Linguistic Case Studies -->
+        <section id="page-2" class="page-container hidden space-y-10">
             <div class="border-l-2 border-morandi-500 pl-6 space-y-2">
                 <span class="text-xs uppercase tracking-wider text-morandi-500 font-semibold">Module 02</span>
                 <h2 class="text-3xl font-serif text-morandi-900">Linguistic Case Studies</h2>
-                <p class="text-morandi-500 text-sm">Analyze contemporary lexical evolutions and categorize their underlying processes.</p>
+                <p class="text-morandi-500 text-sm">Analyze contemporary lexical evolutions through three curated case files and test your diagnostic mastery.</p>
             </div>
-            <div class="bg-white p-8 rounded-xl shadow-sm border border-morandi-100 text-center py-16">
-                <p class="font-serif text-morandi-500">[ Case Studies Content Loading from data.json... ]</p>
+
+            <!-- 3 Curated Cases Grid (All English) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Case 1 -->
+                <div class="bg-white p-6 rounded-xl border border-morandi-100 shadow-sm flex flex-col justify-between space-y-4">
+                    <div>
+                        <span class="text-xs font-serif text-morandi-500 uppercase tracking-widest">Case File I</span>
+                        <h3 class="text-2xl font-serif text-morandi-900 mt-1">"Toxic"</h3>
+                        <p class="text-xs text-morandi-500 italic mt-1">From Medical Pathogen to Cultural Metaphor</p>
+                    </div>
+                    <div class="space-y-3 text-xs font-serif text-morandi-700 leading-relaxed border-t border-morandi-100 pt-4">
+                        <p><strong>Etymology:</strong> Derived from Latin <em>toxicum</em> (poison for arrows), originally a rigorous chemical and medical term.</p>
+                        <p><strong>Shift:</strong> Evolved from physical venom to emotional harm in pop culture, culminating in modern terms like "toxic productivity."</p>
+                        <p class="bg-morandi-50 p-2.5 rounded text-morandi-900"><strong>Core Mechanism:</strong> Metaphorical Extension</p>
+                    </div>
+                </div>
+
+                <!-- Case 2 -->
+                <div class="bg-white p-6 rounded-xl border border-morandi-100 shadow-sm flex flex-col justify-between space-y-4">
+                    <div>
+                        <span class="text-xs font-serif text-morandi-500 uppercase tracking-widest">Case File II</span>
+                        <h3 class="text-2xl font-serif text-morandi-900 mt-1">"Sick"</h3>
+                        <p class="text-xs text-morandi-500 italic mt-1">The Extreme Inversion of Morbidity</p>
+                    </div>
+                    <div class="space-y-3 text-xs font-serif text-morandi-700 leading-relaxed border-t border-morandi-100 pt-4">
+                        <p><strong>Etymology:</strong> Rooted in Old Germanic languages, historically denoting physical illness or weakness.</p>
+                        <p><strong>Shift:</strong> Re-appropriated by subcultures (hip-hop/skate) via amelioration to signify exceptional excellence.</p>
+                        <p class="bg-morandi-50 p-2.5 rounded text-morandi-900"><strong>Core Mechanism:</strong> Subcultural Inversion</p>
+                    </div>
+                </div>
+
+                <!-- Case 3 -->
+                <div class="bg-white p-6 rounded-xl border border-morandi-100 shadow-sm flex flex-col justify-between space-y-4">
+                    <div>
+                        <span class="text-xs font-serif text-morandi-500 uppercase tracking-widest">Case File III</span>
+                        <h3 class="text-2xl font-serif text-morandi-900 mt-1">"BRB / GOAT"</h3>
+                        <p class="text-xs text-morandi-500 italic mt-1">Cognitive Efficiency in Digital Velocity</p>
+                    </div>
+                    <div class="space-y-3 text-xs font-serif text-morandi-700 leading-relaxed border-t border-morandi-100 pt-4">
+                        <p><strong>Etymology:</strong> Born out of real-time chat rooms and social media communication constraints.</p>
+                        <p><strong>Shift:</strong> Compressing complex multi-word clauses into high-density phonetic symbols.</p>
+                        <p class="bg-morandi-50 p-2.5 rounded text-morandi-900"><strong>Core Mechanism:</strong> Blending & Acronymization</p>
+                    </div>
+                </div>
             </div>
+
+            <!-- Interactive Matching Drill (All English) -->
+            <div class="bg-white p-8 rounded-xl border border-morandi-100 shadow-sm space-y-6">
+                <div class="border-b border-morandi-100 pb-4">
+                    <h3 class="font-serif text-lg text-morandi-900">Interactive Drill: Semantic Drift Matching</h3>
+                    <p class="text-xs text-morandi-500 font-serif mt-1">Match the etymological origins on the left with their modern evolutionary outcomes on the right.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-serif text-sm">
+                    <div class="p-4 bg-morandi-50 rounded-lg border border-morandi-100 flex flex-col justify-between">
+                        <span class="font-semibold text-morandi-900">1. Toxic (Arrow Poison)</span>
+                        <select class="match-select mt-3 p-2 rounded border border-morandi-300 bg-white text-xs text-morandi-700 outline-none" data-target="1">
+                            <option value="">-- Select Modern Usage --</option>
+                            <option value="A">A. Street slang for supreme athletic excellence</option>
+                            <option value="B">B. Workplace and relational oppressive harm</option>
+                            <option value="C">C. High-speed digital cognitive compression</option>
+                        </select>
+                    </div>
+
+                    <div class="p-4 bg-morandi-50 rounded-lg border border-morandi-100 flex flex-col justify-between">
+                        <span class="font-semibold text-morandi-900">2. Sick (Pathological Illness)</span>
+                        <select class="match-select mt-3 p-2 rounded border border-morandi-300 bg-white text-xs text-morandi-700 outline-none" data-target="2">
+                            <option value="">-- Select Modern Usage --</option>
+                            <option value="A">A. Street slang for supreme athletic excellence</option>
+                            <option value="B">B. Workplace and relational oppressive harm</option>
+                            <option value="C">C. High-speed digital cognitive compression</option>
+                        </select>
+                    </div>
+
+                    <div class="p-4 bg-morandi-50 rounded-lg border border-morandi-100 flex flex-col justify-between">
+                        <span class="font-semibold text-morandi-900">3. BRB / GOAT (Acronyms)</span>
+                        <select class="match-select mt-3 p-2 rounded border border-morandi-300 bg-white text-xs text-morandi-700 outline-none" data-target="3">
+                            <option value="">-- Select Modern Usage --</option>
+                            <option value="A">A. Street slang for supreme athletic excellence</option>
+                            <option value="B">B. Workplace and relational oppressive harm</option>
+                            <option value="C">C. High-speed digital cognitive compression</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2">
+                    <button id="btn-check-match" class="bg-morandi-700 text-white font-serif px-6 py-2 rounded text-xs tracking-wide hover:bg-morandi-900 transition">
+                        Verify Matches
+                    </button>
+                    <span id="match-feedback" class="text-xs font-serif italic text-morandi-500"></span>
+                </div>
+            </div>
+
+            <!-- Mastery Quiz Section -->
+            <div class="bg-white p-8 rounded-xl border border-morandi-100 shadow-sm space-y-8">
+                <div class="border-b border-morandi-100 pb-4">
+                    <h3 class="font-serif text-lg text-morandi-900">Mastery Quiz</h3>
+                    <p class="text-xs text-morandi-500 font-serif mt-1">Test your analytical comprehension of linguistic mechanisms.</p>
+                </div>
+
+                <div id="quiz-container" class="space-y-8 font-serif">
+                    <!-- Question 1 -->
+                    <div class="quiz-item space-y-3 pb-6 border-b border-morandi-100" data-question="1" data-answer="1">
+                        <p class="text-sm font-semibold text-morandi-900">1. Regarding the evolution of "Toxic" from a medical term to interpersonal relationships, which linguistic explanation is most accurate?</p>
+                        <div class="space-y-2 pl-2 text-xs text-morandi-700">
+                            <label class="block p-2.5 rounded border border-morandi-100 hover:bg-morandi-50 cursor-pointer transition">
+                                <input type="radio" name="q1" value="0" class="mr-2"> A) It occurs because medical vocabulary naturally shortens to satisfy the laziness principle.
+                            </label>
+                            <label class="block p-2.5 rounded border border-morandi-100 hover:bg-morandi-50 cursor-pointer transition">
+                                <input type="radio" name="q1" value="1" class="mr-2"> B) It is a classic case of Metaphorical Extension, transferring physical venom to abstract psychological harm.
+                            </label>
+                            <label class="block p-2.5 rounded border border-morandi-100 hover:bg-morandi-50 cursor-pointer transition">
+                                <input type="radio" name="q1" value="2" class="mr-2"> C) It represents a complete semantic inversion known as Amelioration.
+                            </label>
+                            <label class="block p-2.5 rounded border border-morandi-100 hover:bg-morandi-50 cursor-pointer transition">
+                                <input type="radio" name="q1" value="3" class="mr-2"> D) It is a meaningless spelling error generated randomly by internet memes.
+                            </label>
+                        </div>
+                        <p class="quiz-feedback hidden text-xs italic mt-2 p-3 rounded bg-morandi-50 text-morandi-900"></p>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="quiz-item space-y-3 pb-6 border-b border-morandi-100" data-question="2" data-answer="2">
+                        <p class="text-sm font-semibold text-morandi-900">2. In skate culture or hip-hop, saying "That trick was sick!" exemplifies which linguistic phenomenon?</p>
+                        <div class="space-y-2 pl-2 text-xs text-morandi-700">
+                            <label class="block p-2.5 rounded border border-morandi-100 hover:bg-morandi-50 cursor-pointer transition">
+                                <input type="radio" name="q2" value="0" class="mr-2"> A) Semantic Bleaching: The literal meaning fades completely into a punctuation mark.
+                            </label>
+                            <label class="block p-2.5 rounded border border-morandi-100 hover:bg-morandi-50 cursor-pointer transition">
+                                <input type="radio" name="q2" value="1" class="mr-2"> B) Clipping: Truncating a long word down to a single syllable.
+                            </label>
+                            <label class="block p-2.5 rounded border border-morandi-100 hover:bg-morandi-50 cursor-pointer transition">
+                                <input type="radio" name="q2" value="2" class="mr-2"> C) Subcultural Inversion / Amelioration: Deliberately repurposing a negative term to express high praise.
+                            </label>
+                            <label class="block p-2.5 rounded border border-morandi-100 hover:bg-morandi-50 cursor-pointer transition">
+                                <input type="radio" name="q2" value="3" class="mr-2"> D) Etymological Fallacy: Misunderstanding the original Germanic spelling.
+                            </label>
+                        </div>
+                        <p class="quiz-feedback hidden text-xs italic mt-2 p-3 rounded bg-morandi-50 text-morandi-900"></p>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="quiz-item space-y-3 pb-2" data-question="3" data-answer="1">
+                        <p class="text-sm font-semibold text-morandi-900">3. Why do digital natives frequently use acronyms like "GOAT" or "BRB"?</p>
+                        <div class="space-y-2 pl-2 text-xs text-morandi-700">
+                            <label class="block p-2.5 rounded border border-morandi-100 hover:bg-morandi-50 cursor-pointer transition">
+                                <input type="radio" name="q3" value="0" class="mr-2"> A) Ancient English spelling rules formally mandated sentence abbreviation.
+                            </label>
+                            <label class="block p-2.5 rounded border border-morandi-100 hover:bg-morandi-50 cursor-pointer transition">
+                                <input type="radio" name="q3" value="1" class="mr-2"> B) It reflects the pursuit of Cognitive Efficiency, compressing complex structures into high-density symbols.
+                            </label>
+                            <label class="block p-2.5 rounded border border-morandi-100 hover:bg-morandi-50 cursor-pointer transition">
+                                <input type="radio" name="q3" value="2" class="mr-2"> C) It is an extreme example of complete semantic death.
+                            </label>
+                            <label class="block p-2.5 rounded border border-morandi-100 hover:bg-morandi-50 cursor-pointer transition">
+                                <input type="radio" name="q3" value="3" class="mr-2"> D) It is an official government standard for faster typing speeds.</label>
+                        </div>
+                        <p class="quiz-feedback hidden text-xs italic mt-2 p-3 rounded bg-morandi-50 text-morandi-900"></p>
+                    </div>
+                </div>
+
+                <div class="pt-4 flex justify-center">
+                    <button id="btn-submit-quiz" class="bg-morandi-700 text-white font-serif px-8 py-3 rounded text-xs tracking-wide hover:bg-morandi-900 transition">
+                        Submit Mastery Quiz & Unlock Next Phase
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
             <div class="flex justify-between pt-6">
-                <button class="btn-prev text-morandi-500 hover:text-morandi-900 font-serif text-sm">&larr; Back</button>
-                <button id="btn-next-2" class="bg-morandi-700 text-white font-serif px-8 py-3 rounded-lg text-sm tracking-wide shadow-sm hover:bg-morandi-900 transition">Proceed to Pillars &rarr;</button>
+                <button class="btn-prev text-morandi-500 hover:text-morandi-900 font-serif text-sm">&larr; Back to Module 1</button>
+                <button id="btn-next-2" disabled class="bg-morandi-300 text-white font-serif px-8 py-3 rounded-lg text-sm tracking-wide shadow-sm cursor-not-allowed transition">
+                    Proceed to 4 Pillars &rarr;
+                </button>
             </div>
         </section>
-
         <!-- PAGE 3: The Pillars of Linguistics (Placeholder) -->
         <section id="page-3" class="page-container hidden space-y-8">
             <div class="border-l-2 border-morandi-500 pl-6 space-y-2">
