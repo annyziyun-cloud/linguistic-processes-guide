@@ -172,7 +172,73 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-   
+   // ==========================================
+    // Module 04: AI Editorial Synthesis Logic
+    // ==========================================
+    const btnGenerateAI = document.getElementById('btn-generate-ai');
+    const aiOutputArea = document.getElementById('ai-output-area');
+    const aiLoadingOverlay = document.getElementById('ai-loading-overlay');
+    const aiStatus = document.getElementById('ai-status');
+
+    if (btnGenerateAI) {
+        btnGenerateAI.addEventListener('click', () => {
+            // 1. Collect user drafts
+            const step2 = document.getElementById('draft-step2').value.trim();
+            const step3 = document.getElementById('draft-step3').value.trim();
+            const step4 = document.getElementById('draft-step4').value.trim();
+            const step5 = document.getElementById('draft-step5').value.trim();
+
+            // Check if at least some content is provided
+            if (!step2 && !step3 && !step4 && !step5) {
+                alert("Please jot down at least a few keywords in the framework before generating.");
+                return;
+            }
+
+            // 2. Trigger Loading UI
+            aiLoadingOverlay.classList.remove('hidden');
+            aiStatus.textContent = "Processing...";
+            aiOutputArea.innerHTML = ""; // Clear previous content
+
+            // 3. Simulate AI API Call (Network Delay)
+            /* 
+               [Note for Future API Integration]
+               Here you would normally construct a prompt string containing the student's inputs,
+               and send a fetch() request to your LLM endpoint (e.g., Gemini API).
+               For this frontend demo, we simulate a 2.5-second processing delay 
+               and return a highly polished mock response.
+            */
+            setTimeout(() => {
+                // Mock Polished Script (Incorporating the concepts of their answers)
+                const polishedScript = `
+                    <p>Imagine this. You show your friend a brand-new, expensive pair of sneakers, and their first reaction is: <em>'Whoa, bro, that’s sick.'</em> Or you’re playing a game, someone is acting weird, and you just say: <em>'You’re acting sus.'</em></p>
+                    <p>If you translate these literally, it makes zero sense. But we all know exactly what they mean. ${step2 ? "As you noted, " + step2 + " In reality, language isn't just a static dictionary printed decades ago; it is a living, breathing system." : "This proves that language isn't just a static dictionary printed decades ago; it is a living, breathing system."}</p>
+                    <p>${step3 ? step3 : "Think of it like an open-source software."} We, the users, are constantly pushing new updates and patching bugs in our daily conversations to make communication faster and more expressive.</p>
+                    <p>${step4 ? step4 : "But have you ever stopped to wonder... who actually governs these unwritten rules?"} Why does a word for 'vomiting' suddenly mean 'awesome'? Is it just random chaos?</p>
+                    <p>The answer is no. ${step5 ? step5 : "There are invisible, highly structured equations behind every new slang term we invent."} Today, we are going to decode the four foundational pillars of word formation: Semantic Shift, Clipping, Derivation, and Compounding. Let's dive in and see how we reinvent English every single day.</p>
+                `;
+
+                // 4. Remove Loading UI & Start Typewriter Effect
+                aiLoadingOverlay.classList.add('hidden');
+                aiStatus.textContent = "Polished & Finalized";
+                aiStatus.classList.replace('text-morandi-300', 'text-morandi-700');
+
+                // Typewriter Animation
+                let i = 0;
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = polishedScript;
+                const textNodes = Array.from(tempDiv.childNodes);
+                
+                aiOutputArea.innerHTML = "";
+                
+                textNodes.forEach((node, index) => {
+                    setTimeout(() => {
+                        aiOutputArea.appendChild(node);
+                    }, index * 400); // Reveal one paragraph every 400ms
+                });
+
+            }, 2500); // 2.5 seconds simulated delay
+        });
+    }
     // ==========================================
     // Page Navigation Controller
     // ==========================================
