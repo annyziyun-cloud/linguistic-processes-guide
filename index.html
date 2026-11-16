@@ -49,39 +49,66 @@
     <!-- Main Content Container (Wizard Pages) -->
     <main class="w-full max-w-4xl mx-auto px-6 py-12 flex-1">
         
-        <!-- PAGE 1: The Hook Deconstruction -->
+        <!-- PAGE 1: The Hook Deconstruction (Gen Z Slang Decoder) -->
         <section id="page-1" class="page-container space-y-8">
             <div class="border-l-2 border-morandi-500 pl-6 space-y-2">
                 <span class="text-xs uppercase tracking-wider text-morandi-500 font-semibold">Module 01</span>
-                <h2 class="text-3xl font-serif text-morandi-900">The Hook Deconstruction</h2>
-                <p class="text-morandi-500 text-sm">Examine the opening rhetorical device. Click the underlined terms to reveal analytical insights.</p>
+                <h2 class="text-3xl font-serif text-morandi-900">The Gen Z Slang Decoder</h2>
+                <p class="text-morandi-500 text-sm">Test your linguistic intuition. Translate contemporary digital vernacular before diving into the mechanics.</p>
             </div>
 
-            <div class="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-morandi-100 space-y-6 font-serif leading-relaxed text-lg text-morandi-700">
-                <p>
-                    Imagine this. You just bought a brand-new, super expensive pair of sneakers. You show them to your best friend, and their first reaction is: 
-                    <span class="annotation-trigger text-morandi-900 font-semibold underline decoration-morandi-300 cursor-pointer hover:text-morandi-500 transition" data-note="Semantic Shift: A term denoting pathology is inverted to express high aesthetic approval.">‘Whoa, bro, that’s sick.’</span>
-                </p>
-                <p>
-                    Now, pause for a second. If you translate that literally, your friend just looked at your beautiful new shoes and said they have a disease. That makes zero sense, right? But we all know exactly what they mean: those shoes are incredibly cool.
-                </p>
-                <p>
-                    Or think about this one. You’re playing a game, and someone is hiding in the corner acting weird. You don’t stand up and formally announce, <em>'Excuse me, I believe you are behaving in a highly suspicious manner.'</em> No! Nobody has time for that. You just point and say, 
-                    <span class="annotation-trigger text-morandi-900 font-semibold underline decoration-morandi-300 cursor-pointer hover:text-morandi-500 transition" data-note="Clipping: Morphological truncation dropping syllables for high-speed conversational efficiency.">‘You’re acting sus.’</span>
-                </p>
-                <p class="text-base text-morandi-500 italic pt-4 border-t border-morandi-100">
-                    We use these terms daily. But who governs these unwritten rules? Let's investigate the underlying mechanics.
-                </p>
+            <!-- Simulated Chat / Terminal Interface -->
+            <div class="bg-white p-8 md:p-10 rounded-xl shadow-sm border border-morandi-100 space-y-6">
+                <div class="flex items-center gap-3 text-xs font-serif text-morandi-300 border-b border-morandi-100 pb-4">
+                    <span class="w-2.5 h-2.5 rounded-full bg-morندی-500"></span>
+                    <span>Live Transmission // Target: Gen Z Digital Vernacular</span>
+                </div>
+
+                <!-- Chat Bubble -->
+                <div class="bg-morandi-50 p-6 rounded-lg border border-morandi-100">
+                    <p class="text-xs uppercase tracking-widest text-morandi-500 mb-2">Detected Phrase:</p>
+                    <p class="text-xl md:text-2xl font-serif text-morandi-900 italic">
+                        “Bro literally cooked with that rizz, no cap.”
+                    </p>
+                </div>
+
+                <!-- Multiple Choice Options -->
+                <div class="space-y-3 pt-2">
+                    <p class="text-sm font-serif text-morandi-700 font-medium">Select your translation hypothesis:</p>
+                    
+                    <button class="decoder-option w-full text-left p-4 rounded-lg border border-morandi-100 bg-white hover:bg-morandi-50 transition text-sm font-serif text-morandi-700 flex items-center justify-between" data-correct="false">
+                        <span><strong>A.</strong> He is literally standing in the kitchen cooking food with great personal charm.</span>
+                        <span class="text-xs text-morandi-300">Literal Trap</span>
+                    </button>
+
+                    <button class="decoder-option w-full text-left p-4 rounded-lg border border-morandi-100 bg-white hover:bg-morandi-50 transition text-sm font-serif text-morandi-700 flex items-center justify-between" data-correct="true">
+                        <span><strong>B.</strong> That guy handled the situation brilliantly and has incredible effortless charisma.</span>
+                        <span class="text-xs text-morandi-500">Gen Z Intent</span>
+                    </button>
+
+                    <button class="decoder-option w-full text-left p-4 rounded-lg border border-morandi-100 bg-white hover:bg-morandi-50 transition text-sm font-serif text-morandi-700 flex items-center justify-between" data-correct="false">
+                        <span><strong>C.</strong> It is a corrupted binary system error code generated by social algorithms.</span>
+                        <span class="text-xs text-morandi-300">Tech Humor</span>
+                    </button>
+                </div>
             </div>
 
-            <!-- Annotation Pop-up Display Box -->
-            <div id="annotation-box" class="hidden bg-morandi-100 p-4 rounded-lg text-sm font-serif text-morandi-900 border border-morandi-300 transition-all">
-                💡 <span id="annotation-text">Click an underlined term above to view linguistic analysis.</span>
+            <!-- Instant Feedback & Pedagogical Pivot Card (Hidden Initially) -->
+            <div id="decoder-feedback" class="hidden bg-white p-8 rounded-xl border border-morandi-300 shadow-sm space-y-4 transition-all">
+                <div class="flex items-center gap-3">
+                    <span id="feedback-badge" class="px-3 py-1 rounded text-xs font-serif uppercase tracking-wider font-semibold"></span>
+                    <h3 id="feedback-title" class="font-serif text-lg text-morandi-900 font-bold"></h3>
+                </div>
+                <p id="feedback-desc" class="font-serif text-sm text-morandi-700 leading-relaxed"></p>
+                
+                <div class="pt-4 border-t border-morandi-100 text-xs font-serif text-morandi-500 italic">
+                    💡 <strong>Pedagogical Pivot:</strong> Why do we understand every single English word individually, yet fail completely to decode the meaning? This is the core engine of language evolution we will investigate today.
+                </div>
             </div>
 
-            <!-- Action / Unlock Button -->
+            <!-- Action / Unlock Button (Disabled until answered) -->
             <div class="flex justify-end pt-6">
-                <button id="btn-next-1" class="bg-morandi-700 text-white font-serif px-8 py-3 rounded-lg text-sm tracking-wide shadow-sm hover:bg-morandi-900 transition flex items-center gap-2">
+                <button id="btn-next-1" disabled class="bg-morandi-300 text-white font-serif px-8 py-3 rounded-lg text-sm tracking-wide shadow-sm cursor-not-allowed transition flex items-center gap-2">
                     Proceed to Case Studies &rarr;
                 </button>
             </div>
