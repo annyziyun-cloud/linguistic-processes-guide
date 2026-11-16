@@ -1,6 +1,6 @@
 /* ==========================================================================
    Lavend/r Academic Editions - Main Interaction Script
-   Controller for Page Navigation, Annotations, and Gated Progression
+   Controller for Page Navigation, Annotations, AI Synthesis, and Gated Progression
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const stepIndicator = document.getElementById('step-indicator');
     
-    // Navigation Buttons (宣告一次即可)
+    // Navigation Buttons
     const btnNext1 = document.getElementById('btn-next-1');
     const btnNext2 = document.getElementById('btn-next-2');
     const btnNext3 = document.getElementById('btn-next-3');
@@ -35,6 +35,39 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.remove('bg-morandi-700', 'hover:bg-morandi-900');
         btn.classList.add('bg-morandi-300', 'cursor-not-allowed');
     }
+
+    // ==========================================
+    // Page Navigation Controller
+    // ==========================================
+    function navigateToPage(targetPage) {
+        for (let i = 1; i <= totalPages; i++) {
+            const page = document.getElementById(`page-${i}`);
+            if (page) page.classList.add('hidden');
+        }
+
+        const targetElement = document.getElementById(`page-${targetPage}`);
+        if (targetElement) {
+            targetElement.classList.remove('hidden');
+            currentPage = targetPage;
+        }
+
+        const romanNumerals = ['I', 'II', 'III', 'IV'];
+        if (stepIndicator) {
+            stepIndicator.textContent = `Phase ${romanNumerals[currentPage - 1]} of IV`;
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    if (btnNext1) btnNext1.addEventListener('click', () => navigateToPage(2));
+    if (btnNext2) btnNext2.addEventListener('click', () => navigateToPage(3));
+    if (btnNext3) btnNext3.addEventListener('click', () => navigateToPage(4));
+
+    prevButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (currentPage > 1) navigateToPage(currentPage - 1);
+        });
+    });
 
     // ==========================================
     // Module 01: Gen Z Slang Decoder Logic
@@ -85,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // Module 02: Linguistic Case Studies Logic
     // ==========================================
-    
     // 1. Matching Drill Verification
     const btnCheckMatch = document.getElementById('btn-check-match');
     const matchSelects = document.querySelectorAll('.match-select');
@@ -149,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             unlockButton(btnNext2);
-            // Using setTimeout so the alert doesn't block the UI rendering immediately
             setTimeout(() => {
                 alert(`Quiz Submitted! You scored ${score} / 3. Proceed to Module 03 is now unlocked.`);
             }, 100);
@@ -161,8 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const pillarCheckbox = document.getElementById('pillar-acknowledgement');
     
-    // (已移除重複宣告的 const btnNext3 = document.getElementById('btn-next-3');)
-
     if (pillarCheckbox && btnNext3) {
         pillarCheckbox.addEventListener('change', () => {
             if (pillarCheckbox.checked) {
@@ -172,105 +201,94 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-   // ==========================================
-    // Module 04: AI Editorial Synthesis Logic
+
+    // ==========================================
+    // Module 04: REAL AI Editorial Synthesis Logic
     // ==========================================
     const btnGenerateAI = document.getElementById('btn-generate-ai');
     const aiOutputArea = document.getElementById('ai-output-area');
     const aiLoadingOverlay = document.getElementById('ai-loading-overlay');
     const aiStatus = document.getElementById('ai-status');
 
+    // ⚠️ [重要] 請將下方字串替換為你在 Google Apps Script 部署後的 Web App URL
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/你的部署網址/exec";
+
     if (btnGenerateAI) {
-        btnGenerateAI.addEventListener('click', () => {
-            // 1. Collect user drafts
+        btnGenerateAI.addEventListener('click', async () => {
+            
             const step2 = document.getElementById('draft-step2').value.trim();
             const step3 = document.getElementById('draft-step3').value.trim();
             const step4 = document.getElementById('draft-step4').value.trim();
             const step5 = document.getElementById('draft-step5').value.trim();
 
-            // Check if at least some content is provided
             if (!step2 && !step3 && !step4 && !step5) {
                 alert("Please jot down at least a few keywords in the framework before generating.");
                 return;
             }
 
-            // 2. Trigger Loading UI
             aiLoadingOverlay.classList.remove('hidden');
-            aiStatus.textContent = "Processing...";
-            aiOutputArea.innerHTML = ""; // Clear previous content
+            aiStatus.textContent = "AI is analyzing and synthesizing...";
+            aiOutputArea.innerHTML = ""; 
 
-            // 3. Simulate AI API Call (Network Delay)
-            setTimeout(() => {
-                
-                // 完全替換邏輯：如果有填寫就用學生的，沒填寫才用預設的
-                const finalStep2 = step2 || "Language isn't just a static dictionary printed decades ago; it is a living, breathing system.";
-                const finalStep3 = step3 || "Think of English like a massive open-source software project. We are all developers, constantly patching bugs and releasing new vocabulary updates.";
-                const finalStep4 = step4 || "But have you ever wondered who actually approves these updates? Is it just random chaos?";
-                const finalStep5 = step5 || "Today, we are going to decode the four foundational pillars of word formation. Let's dive in and see how we reinvent English every single day.";
-
-                // Mock Polished Script (Clean Synthesis)
-                const polishedScript = `
-                    <p>Imagine this. You show your friend a brand-new, expensive pair of sneakers, and their first reaction is: <em>'Whoa, bro, that’s sick.'</em> Or you’re playing a game, someone is acting weird, and you just say: <em>'You’re acting sus.'</em></p>
-                    <p>If you translate these literally, it makes zero sense. But we all know exactly what they mean. ${finalStep2}</p>
-                    <p>${finalStep3}</p>
-                    <p>${finalStep4}</p>
-                    <p>The truth is, there are invisible, highly structured equations behind every new slang term. ${finalStep5}</p>
-                `;
-
-                // 4. Remove Loading UI & Start Typewriter Effect
-                aiLoadingOverlay.classList.add('hidden');
-                aiStatus.textContent = "Polished & Finalized";
-                aiStatus.classList.replace('text-morandi-300', 'text-morandi-700');
-
-                // Typewriter Animation
-                let i = 0;
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = polishedScript;
-                const textNodes = Array.from(tempDiv.childNodes);
-                
-                aiOutputArea.innerHTML = "";
-                
-                textNodes.forEach((node, index) => {
-                    setTimeout(() => {
-                        aiOutputArea.appendChild(node);
-                    }, index * 400); // Reveal one paragraph every 400ms
+            try {
+                // 向 Google Apps Script 發送真實請求 (使用 text/plain 避免 CORS preflight 問題)
+                const response = await fetch(GAS_WEB_APP_URL, {
+                    method: "POST",
+                    body: JSON.stringify({ step2, step3, step4, step5 })
                 });
 
-            }, 2500); // 2.5 seconds simulated delay
+                const result = await response.json();
+
+                if (result.success) {
+                    aiLoadingOverlay.classList.add('hidden');
+                    aiStatus.textContent = "Editorial Review Complete";
+                    aiStatus.classList.replace('text-morandi-300', 'text-morandi-900');
+
+                    // 輸出 AI 真實生成的內容，並保留打字機特效與 Fade-in 動畫
+                    const finalHTML = `
+                        <div class="mb-6 p-5 bg-morandi-50 rounded-xl border border-morandi-100 shadow-sm" style="animation: fadeInPanel 0.5s ease-out forwards;">
+                            <h4 class="text-sm font-bold text-morandi-900 mb-2 flex items-center gap-2">✨ AI Editorial Feedback</h4>
+                            <p class="text-xs text-morandi-700 leading-relaxed">Your draft has been analyzed. Grammar was corrected, and professional transitions were dynamically synthesized to ensure a TED-style academic delivery.</p>
+                        </div>
+                        <div class="border-t border-morandi-100 pt-6">
+                            <h4 class="text-sm font-bold text-morandi-900 mb-4 tracking-wide uppercase">🎙️ Your Polished Script</h4>
+                            <div id="typewriter-script" class="space-y-4 text-sm text-morandi-700 leading-loose"></div>
+                        </div>
+                        <style>
+                            @keyframes fadeInPanel { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+                        </style>
+                    `;
+                    
+                    aiOutputArea.innerHTML = finalHTML;
+                    
+                    const typewriterTarget = document.getElementById('typewriter-script');
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = result.text; // 填入 AI 真實回傳的 HTML 文本
+                    const textNodes = Array.from(tempDiv.childNodes);
+                    
+                    textNodes.forEach((node, index) => {
+                        setTimeout(() => {
+                            typewriterTarget.appendChild(node);
+                        }, index * 300); // 打字機特效速度 (每段 300ms)
+                    });
+
+                } else {
+                    throw new Error(result.error || "Unknown server error.");
+                }
+
+            } catch (error) {
+                console.error("AI Generation Error: ", error);
+                aiLoadingOverlay.classList.add('hidden');
+                aiStatus.textContent = "Generation Error";
+                aiOutputArea.innerHTML = `
+                    <div class="p-4 bg-red-50 rounded-xl border border-red-200">
+                        <p class="text-red-600 text-sm font-semibold">⚠️ Connection Failed</p>
+                        <p class="text-red-500 text-xs mt-1">Failed to connect to the AI editorial server. Please check your GAS Web App URL or internet connection.</p>
+                        <p class="text-red-400 text-[10px] mt-2 italic">Error Log: ${error.message}</p>
+                    </div>`;
+            }
         });
     }
-    // ==========================================
-    // Page Navigation Controller
-    // ==========================================
-    function navigateToPage(targetPage) {
-        for (let i = 1; i <= totalPages; i++) {
-            const page = document.getElementById(`page-${i}`);
-            if (page) page.classList.add('hidden');
-        }
 
-        const targetElement = document.getElementById(`page-${targetPage}`);
-        if (targetElement) {
-            targetElement.classList.remove('hidden');
-            currentPage = targetPage;
-        }
-
-        const romanNumerals = ['I', 'II', 'III', 'IV'];
-        if (stepIndicator) {
-            stepIndicator.textContent = `Phase ${romanNumerals[currentPage - 1]} of IV`;
-        }
-
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    if (btnNext1) btnNext1.addEventListener('click', () => navigateToPage(2));
-    if (btnNext2) btnNext2.addEventListener('click', () => navigateToPage(3));
-    if (btnNext3) btnNext3.addEventListener('click', () => navigateToPage(4));
-
-    prevButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (currentPage > 1) navigateToPage(currentPage - 1);
-        });
-    });
-
-    console.log("Lavend/r Academic Framework initialized successfully with optimized Quiz & Match logic.");
+    console.log("Lavend/r Academic Framework initialized successfully with full GAS/AI integration.");
 });
