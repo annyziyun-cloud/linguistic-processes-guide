@@ -210,11 +210,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const aiLoadingOverlay = document.getElementById('ai-loading-overlay');
     const aiStatus = document.getElementById('ai-status');
 
-    // ⚠️ [重要] 請將下方字串替換為你在 Google Apps Script 部署後的 Web App URL
-    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw_goKDN46kgTrbabT_lGWrBSA6BJ2_GcGFxv_g1rDTCHm4qUGNXxmtrJhkqw_dZSo/exec";
+    // 綁定你部署的 GAS Web App URL
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxyCTuhUMSey3zCieSgsdo8X4CqNYhA-n9M_RZfa5V2hGbM-5IfocNSmvlvZkQFXuk/exec";
+
+    // 避免重複點擊的狀態鎖
+    let isGenerating = false;
 
     if (btnGenerateAI) {
         btnGenerateAI.addEventListener('click', async () => {
+            if (isGenerating) return;
             
             const step2 = document.getElementById('draft-step2').value.trim();
             const step3 = document.getElementById('draft-step3').value.trim();
@@ -226,12 +230,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            isGenerating = true;
+            btnGenerateAI.classList.add('opacity-50', 'cursor-not-allowed');
+            
             aiLoadingOverlay.classList.remove('hidden');
             aiStatus.textContent = "AI is analyzing and synthesizing...";
             aiOutputArea.innerHTML = ""; 
 
             try {
-                // 向 Google Apps Script 發送真實請求 (使用 text/plain 避免 CORS preflight 問題)
+                // 發送請求 (不設定 Content-Type 標頭以避開嚴格的 CORS OPTIONS 預檢阻擋，內容以 JSON 字串傳遞即可)
                 const response = await fetch(GAS_WEB_APP_URL, {
                     method: "POST",
                     body: JSON.stringify({ step2, step3, step4, step5 })
@@ -244,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     aiStatus.textContent = "Editorial Review Complete";
                     aiStatus.classList.replace('text-morandi-300', 'text-morandi-900');
 
-                    // 輸出 AI 真實生成的內容，並保留打字機特效與 Fade-in 動畫
+                    // 輸出 AI 生成的內容 (打字機特效版)
                     const finalHTML = `
                         <div class="mb-6 p-5 bg-morandi-50 rounded-xl border border-morandi-100 shadow-sm" style="animation: fadeInPanel 0.5s ease-out forwards;">
                             <h4 class="text-sm font-bold text-morandi-900 mb-2 flex items-center gap-2">✨ AI Editorial Feedback</h4>
@@ -262,14 +269,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     aiOutputArea.innerHTML = finalHTML;
                     
                     const typewriterTarget = document.getElementById('typewriter-script');
+                    typewriterTarget.innerHTML = ""; // 確保目標為空
+                    
                     const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = result.text; // 填入 AI 真實回傳的 HTML 文本
+                    tempDiv.innerHTML = result.text; // 填入 AI 真實回傳的內容
                     const textNodes = Array.from(tempDiv.childNodes);
                     
+                    // 打字機特效：逐段顯示
                     textNodes.forEach((node, index) => {
                         setTimeout(() => {
                             typewriterTarget.appendChild(node);
-                        }, index * 300); // 打字機特效速度 (每段 300ms)
+                        }, index * 300);
                     });
 
                 } else {
@@ -283,9 +293,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 aiOutputArea.innerHTML = `
                     <div class="p-4 bg-red-50 rounded-xl border border-red-200">
                         <p class="text-red-600 text-sm font-semibold">⚠️ Connection Failed</p>
-                        <p class="text-red-500 text-xs mt-1">Failed to connect to the AI editorial server. Please check your GAS Web App URL or internet connection.</p>
+                        <p class="text-red-500 text-xs mt-1">Failed to connect to the AI editorial server. Please check your internet connection or the GAS deployment log.</p>
                         <p class="text-red-400 text-[10px] mt-2 italic">Error Log: ${error.message}</p>
                     </div>`;
+            } finally {
+                // 解除按鈕鎖定
+                isGenerating = false;
+                btnGenerateAI.classList.remove('opacity-50', 'cursor-not-allowed');
             }
         });
     }
