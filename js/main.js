@@ -5,18 +5,36 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // State Management
+    // ==========================================
+    // State Management & DOM Elements
+    // ==========================================
     let currentPage = 1;
     const totalPages = 4;
 
-    // DOM Elements
     const stepIndicator = document.getElementById('step-indicator');
-
-    // Navigation Buttons
+    
+    // Navigation Buttons (宣告一次即可)
     const btnNext1 = document.getElementById('btn-next-1');
     const btnNext2 = document.getElementById('btn-next-2');
     const btnNext3 = document.getElementById('btn-next-3');
     const prevButtons = document.querySelectorAll('.btn-prev');
+
+    // ==========================================
+    // Helper Functions: Button State Controllers
+    // ==========================================
+    function unlockButton(btn) {
+        if (!btn) return;
+        btn.disabled = false;
+        btn.classList.remove('bg-morandi-300', 'cursor-not-allowed');
+        btn.classList.add('bg-morandi-700', 'hover:bg-morandi-900');
+    }
+
+    function lockButton(btn) {
+        if (!btn) return;
+        btn.disabled = true;
+        btn.classList.remove('bg-morandi-700', 'hover:bg-morandi-900');
+        btn.classList.add('bg-morandi-300', 'cursor-not-allowed');
+    }
 
     // ==========================================
     // Module 01: Gen Z Slang Decoder Logic
@@ -57,15 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     feedbackDesc.textContent = "Not quite! Relying on literal translation fails because contemporary slang relies on rapid metaphor and subcultural shifts (The correct choice was B).";
                 }
 
-                if (decoderFeedback) {
-                    decoderFeedback.classList.remove('hidden');
-                }
-
-                if (btnNext1) {
-                    btnNext1.disabled = false;
-                    btnNext1.classList.remove('bg-morandi-300', 'cursor-not-allowed');
-                    btnNext1.classList.add('bg-morandi-700', 'hover:bg-morandi-900');
-                }
+                if (decoderFeedback) decoderFeedback.classList.remove('hidden');
+                
+                unlockButton(btnNext1);
             });
         });
     }
@@ -73,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // Module 02: Linguistic Case Studies Logic
     // ==========================================
+    
     // 1. Matching Drill Verification
     const btnCheckMatch = document.getElementById('btn-check-match');
     const matchSelects = document.querySelectorAll('.match-select');
@@ -81,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnCheckMatch) {
         btnCheckMatch.addEventListener('click', () => {
             let allCorrect = true;
-            // Correct mapping: 1->B, 2->A, 3->C
             const correctAnswers = { "1": "B", "2": "A", "3": "C" };
 
             matchSelects.forEach(select => {
@@ -136,32 +148,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // If quiz is completed, unlock Page 3 button
-            if (btnNext2) {
-                btnNext2.disabled = false;
-                btnNext2.classList.remove('bg-morandi-300', 'cursor-not-allowed');
-                btnNext2.classList.add('bg-morandi-700', 'hover:bg-morandi-900');
+            unlockButton(btnNext2);
+            // Using setTimeout so the alert doesn't block the UI rendering immediately
+            setTimeout(() => {
                 alert(`Quiz Submitted! You scored ${score} / 3. Proceed to Module 03 is now unlocked.`);
-            }
+            }, 100);
         });
     }
 
-   // ==========================================
+    // ==========================================
     // Module 03: Pillars Manual Acknowledgement Logic
     // ==========================================
     const pillarCheckbox = document.getElementById('pillar-acknowledgement');
-    const btnNext3 = document.getElementById('btn-next-3');
+    
+    // (已移除重複宣告的 const btnNext3 = document.getElementById('btn-next-3');)
 
     if (pillarCheckbox && btnNext3) {
         pillarCheckbox.addEventListener('change', () => {
             if (pillarCheckbox.checked) {
-                btnNext3.disabled = false;
-                btnNext3.classList.remove('bg-morandi-300', 'cursor-not-allowed');
-                btnNext3.classList.add('bg-morandi-700', 'hover:bg-morandi-900');
+                unlockButton(btnNext3);
             } else {
-                btnNext3.disabled = true;
-                btnNext3.classList.remove('bg-morandi-700', 'hover:bg-morandi-900');
-                btnNext3.classList.add('bg-morandi-300', 'cursor-not-allowed');
+                lockButton(btnNext3);
             }
         });
     }
@@ -172,9 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function navigateToPage(targetPage) {
         for (let i = 1; i <= totalPages; i++) {
             const page = document.getElementById(`page-${i}`);
-            if (page) {
-                page.classList.add('hidden');
-            }
+            if (page) page.classList.add('hidden');
         }
 
         const targetElement = document.getElementById(`page-${targetPage}`);
@@ -191,23 +196,15 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    if (btnNext1) {
-        btnNext1.addEventListener('click', () => navigateToPage(2));
-    }
-    if (btnNext2) {
-        btnNext2.addEventListener('click', () => navigateToPage(3));
-    }
-    if (btnNext3) {
-        btnNext3.addEventListener('click', () => navigateToPage(4));
-    }
+    if (btnNext1) btnNext1.addEventListener('click', () => navigateToPage(2));
+    if (btnNext2) btnNext2.addEventListener('click', () => navigateToPage(3));
+    if (btnNext3) btnNext3.addEventListener('click', () => navigateToPage(4));
 
     prevButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            if (currentPage > 1) {
-                navigateToPage(currentPage - 1);
-            }
+            if (currentPage > 1) navigateToPage(currentPage - 1);
         });
     });
 
-    console.log("Lavend/r Academic Framework initialized successfully with Quiz & Match logic.");
+    console.log("Lavend/r Academic Framework initialized successfully with optimized Quiz & Match logic.");
 });
